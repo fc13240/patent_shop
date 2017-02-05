@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>lotut</groupId>
-  <artifactId>pbs</artifactId>
+  <artifactId>patent_shop</artifactId>
   <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Brands Trade System</name>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>ip Transaction System</name>
   <url>http://maven.apache.org</url>
   
  	<!-- ################## Properties ################## -->		 
@@ -268,21 +268,7 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-		
-        <!-- ################## logback ################## -->             
-		<!-- <dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>${logback.version}</version>
-		</dependency> -->
-		
-		
+
 		<!-- ################## mail  ##################-->
 		<dependency>
 		    <groupId>javax.mail</groupId>
@@ -349,7 +335,7 @@
 	
 	
 	<build>
-	   <finalName>pbs</finalName>
+	   <finalName>patent_shop</finalName>
 	   <plugins>
 	   	<plugin>
 	   		<groupId>org.apache.maven.plugins</groupId>
@@ -377,7 +363,7 @@
 			<configuration>
 				<url>http://localhost:8080/manager/text</url>
 				<server>apache-tomcat</server>
-				<path>/pbs</path>
+				<path>/patent_shop</path>
 			</configuration>
 		</plugin>	   	
   

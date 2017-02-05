@@ -164,10 +164,11 @@
 	<ul class="navigator">
       <li><a href="<s:url value='/'/>" title="龙图腾专利商标交易">首页</a></li>
       <li><a href="<s:url value='/patent/index.html'/>" title="专利">专利市场</a></li>
-      <li><a href="<s:url value='/brand/index.html'/>" title="商标">商标市场</a></li>
+      <li><a target="_blank" href="http://r.lotut.com" title="商标">商标市场</a></li>
       <li><a href="<s:url value='/patent/getAlreadySalePatent.html'/>" title="专利案例">专利案例</a></li>
       <li><a href="<s:url value='/brand/alreadySalebrands.html'/>" title="商标案例">商标案例</a></li>
       <li><a target="_blank" href="http://g.lotut.com" title="专利管家">专利管家</a></li>
+      <li><a target="_blank" href="http://www.lotut.com" title="专利管家">龙图腾门户</a></li>
       <li><a href="<s:url value='/patent/getLotutSelfSupportPatents.html'/>" title="龙图腾自营">
       <i class="hot" title="龙图腾自营"></i>龙图腾自营       
       </a></li>   	   
