@@ -554,7 +554,7 @@
 			left join patents p on s.patent_id=p.patent_id
 			where ssc.patent_first_column_id=#{firstColumn} and (select count(*) from sell_patent_goods g where g.patent_second_column=s.patent_second_column
 			and <![CDATA[s.patent_id<g.patent_id]]>
-				)<![CDATA[<10]]>
+				)<![CDATA[<5]]>
 			order by s.patent_second_column,s.patent_id
 	</select>
 </mapper>
