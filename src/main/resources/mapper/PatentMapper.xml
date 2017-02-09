@@ -543,7 +543,7 @@
 	<select id="getSellPatentType" parameterType="int" resultType="SecondColumn">
 		select ssc.patent_second_column_id as id,ssc.patent_second_column_name as name
 			from sell_patent_goods s left join sell_second_column ssc on s.patent_second_column=ssc.patent_second_column_id 
-			where ssc.patent_first_column_id=#{firstColumn} 
+			where ssc.patent_first_column_id=#{firstColumn} and s.status=1
 			group by s.patent_second_column
 	</select>
 	
@@ -555,6 +555,7 @@
 			where ssc.patent_first_column_id=#{firstColumn} and (select count(*) from sell_patent_goods g where g.patent_second_column=s.patent_second_column
 			and <![CDATA[s.patent_id<g.patent_id]]>
 				)<![CDATA[<5]]>
+			and s.status=1
 			order by s.patent_second_column,s.patent_id
 	</select>
 </mapper>
