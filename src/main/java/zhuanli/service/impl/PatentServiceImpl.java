@@ -8,18 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.bson.Document;
-import org.bson.types.ObjectId;
-
-import zhuanli.service.utils.PatentFeeExcelGenerator;
-
-import zhuanli.service.constants.Settings;
-import zhuanli.service.utils.ZipUtils;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
+import org.springframework.util.StringUtils;
 
 import net.lingala.zip4j.core.ZipFile;
 import zhuanli.dao.PatentDao;
 import zhuanli.dao.PatentSearchDao;
-import zhuanli.domain.Brand;
 import zhuanli.domain.ColumnCount;
 import zhuanli.domain.ContactAddress;
 import zhuanli.domain.FirstColumn;
@@ -30,8 +24,12 @@ import zhuanli.domain.Page;
 import zhuanli.domain.Patent;
 import zhuanli.domain.PatentSearchCondition;
 import zhuanli.domain.SaleGood;
+import zhuanli.domain.SecondColumn;
 import zhuanli.domain.User;
 import zhuanli.service.PatentService;
+import zhuanli.service.constants.Settings;
+import zhuanli.service.utils.PatentFeeExcelGenerator;
+import zhuanli.service.utils.ZipUtils;
 
 
 
@@ -279,6 +277,36 @@ public class PatentServiceImpl implements PatentService {
 	@Override
 	public List<SaleGood> getLotutSelfSupportPatents(Page page) {
 		return patentDao.getLotutSelfSupportPatents(page);
+	}
+
+	@Override
+	public List<SecondColumn> getSellPatentType(int firstColumn) {
+		return patentDao.getSellPatentType(firstColumn);
+	}
+
+	@Override
+	public Map<String, List<GoodsDetail>> getSellPatentByFirstColumn(int firstColumn) {
+		List<GoodsDetail> patents = patentDao.getSellPatentByFirstColumn(firstColumn);
+		Map<String, List<GoodsDetail>> recommendPatents = new HashMap<String, List<GoodsDetail>>(); 
+
+		for(GoodsDetail patent: patents) {
+			String patentSecondColumn = String.valueOf(patent.getSecondColumn());
+			if (recommendPatents.containsKey(patentSecondColumn)) {
+				recommendPatents.get(patentSecondColumn).add(patent);
+			} else {
+				List<GoodsDetail> patentList = new ArrayList<>();
+				patentList.add(patent);
+				recommendPatents.put(patentSecondColumn, patentList);
+			}
+		}
+		
+		for (String key : recommendPatents.keySet()) {  
+		  	if(StringUtils.isEmpty(recommendPatents.get(key))){
+		  		recommendPatents.remove(key);
+		  	}
+	  	}
+		
+		return recommendPatents;
 	}
 
 }

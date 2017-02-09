@@ -30,6 +30,7 @@ import zhuanli.domain.Page;
 import zhuanli.domain.Patent;
 import zhuanli.domain.PatentSearchCondition;
 import zhuanli.domain.SaleGood;
+import zhuanli.domain.SecondColumn;
 import zhuanli.domain.User;
 import zhuanli.domain.ContactAddress;
 import zhuanli.service.PatentService;
@@ -329,5 +330,16 @@ public class PatentController {
 		model.addAttribute("page",page);
 		model.addAttribute("searchCondition",searchCondition);
 		return "patents_list_by_lotut_self_support";
+	}
+	
+	@RequestMapping(path="/getSalePatentByKind")
+	public String getSalePatentByKind(int firstColumn, Model model ){
+		List<FirstColumn>  AllColumns=patentService.selectAllColumns();
+		List<SecondColumn>  secondColumns=patentService.getSellPatentType(firstColumn);
+		Map<String, List<GoodsDetail>> recommendPatents=patentService.getSellPatentByFirstColumn(firstColumn);
+		model.addAttribute("secondColumns", secondColumns);
+		model.addAttribute("recommendPatents", recommendPatents);
+		model.addAttribute("AllColumns", AllColumns);
+		return "patent_kinds";
 	}
 }

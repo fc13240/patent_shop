@@ -4,11 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import org.bson.Document;
-import org.bson.types.ObjectId;
-
 import net.lingala.zip4j.core.ZipFile;
-import zhuanli.domain.Brand;
 import zhuanli.domain.ColumnCount;
 import zhuanli.domain.ContactAddress;
 import zhuanli.domain.FirstColumn;
@@ -19,6 +15,7 @@ import zhuanli.domain.Page;
 import zhuanli.domain.Patent;
 import zhuanli.domain.PatentSearchCondition;
 import zhuanli.domain.SaleGood;
+import zhuanli.domain.SecondColumn;
 import zhuanli.domain.User;
 
 
@@ -109,6 +106,10 @@ public interface PatentService {
 	List<SaleGood> getSearchLotutSelfSupportPatents(PatentSearchCondition patentSearchCondition);
 
 	List<SaleGood> getLotutSelfSupportPatents(Page page);
+	
+	List<SecondColumn> getSellPatentType(int firstColumn);
+	
+	Map<String, List<GoodsDetail>> getSellPatentByFirstColumn(int firstColumn);
 	
 	
 	

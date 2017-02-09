@@ -13,6 +13,7 @@ import zhuanli.domain.Page;
 import zhuanli.domain.Patent;
 import zhuanli.domain.PatentSearchCondition;
 import zhuanli.domain.SaleGood;
+import zhuanli.domain.SecondColumn;
 import zhuanli.domain.User;
 
 
@@ -98,4 +99,8 @@ public interface PatentDao {
 	List<SaleGood> getSearchLotutSelfSupportPatents(PatentSearchCondition patentSearchCondition);
 
 	List<SaleGood> getLotutSelfSupportPatents(Page page);
+	
+	List<SecondColumn> getSellPatentType(int firstColumn);
+	
+	List<GoodsDetail> getSellPatentByFirstColumn(int firstColumn);
 }

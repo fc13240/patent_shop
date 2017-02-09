@@ -539,4 +539,22 @@
 	       left join sell_first_column sfc on ssc.patent_first_column_id=sfc.patent_first_column_id 
 	       where spg.status=1 and spg.owner=454
 	</select>
+	
+	<select id="getSellPatentType" parameterType="int" resultType="SecondColumn">
+		select ssc.patent_second_column_id as id,ssc.patent_second_column_name as name
+			from sell_patent_goods s left join sell_second_column ssc on s.patent_second_column=ssc.patent_second_column_id 
+			where ssc.patent_first_column_id=#{firstColumn} 
+			group by s.patent_second_column
+	</select>
+	
+	<select id="getSellPatentByFirstColumn" parameterType="int" resultMap="TransactionPatent">
+		select s.patent_id,s.price,s.status,s.transaction_type,s.add_date,s.transaction_date,s.transferor,p.patent_name,p.app_no,s.recommend_status,
+			   ssc.patent_first_column_id,ssc.patent_second_column_name,s.patent_second_column,s.patent_image_url
+			from sell_patent_goods s left join sell_second_column ssc on s.patent_second_column=ssc.patent_second_column_id
+			left join patents p on s.patent_id=p.patent_id
+			where ssc.patent_first_column_id=#{firstColumn} and (select count(*) from sell_patent_goods g where g.patent_second_column=s.patent_second_column
+			and <![CDATA[s.patent_id<g.patent_id]]>
+				)<![CDATA[<10]]>
+			order by s.patent_second_column,s.patent_id
+	</select>
 </mapper>

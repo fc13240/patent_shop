@@ -15,6 +15,7 @@ import zhuanli.domain.Page;
 import zhuanli.domain.Patent;
 import zhuanli.domain.PatentSearchCondition;
 import zhuanli.domain.SaleGood;
+import zhuanli.domain.SecondColumn;
 import zhuanli.domain.User;
 
 
@@ -226,6 +227,16 @@ public class PatentMybatisDao extends SqlSessionDaoSupport implements PatentDao 
 	@Override
 	public List<SaleGood> getLotutSelfSupportPatents(Page page) {
 		return patentMapper.getLotutSelfSupportPatents(page);
+	}
+
+	@Override
+	public List<SecondColumn> getSellPatentType(int firstColumn) {
+		return patentMapper.getSellPatentType(firstColumn);
+	}
+
+	@Override
+	public List<GoodsDetail> getSellPatentByFirstColumn(int firstColumn) {
+		return patentMapper.getSellPatentByFirstColumn(firstColumn);
 	}
 	
 	
